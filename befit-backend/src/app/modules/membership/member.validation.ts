@@ -1,12 +1,11 @@
 import { z } from "zod";
 
  const MembershipValidationSchema = z.object({
-  membershipId: z.string(),
+  membershipId: z.string().optional(),
   user: z.string(),
   packageId: z.string(),
   status: z.enum(["pending", "active", "inactive"]).default("pending"),
   startDate: z.string(),
 });
-
 
 export default MembershipValidationSchema;
