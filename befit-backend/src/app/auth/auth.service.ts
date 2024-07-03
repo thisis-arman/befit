@@ -9,12 +9,12 @@ import { AppError } from "../errors/AppError";
 import config from "../config";
 
 const LoginUser = async (payload: TAuth) => {
-  const user = await User.isUser(payload.username);
+  const user = await User.isUserExists(payload.username);
 
   if (!user) {
     throw new AppError(
       httpStatus.NOT_FOUND,
-      `User ${payload.id} does not exist`
+      `User ${payload.username} does not exist`
     );
   }
 
@@ -23,10 +23,10 @@ const LoginUser = async (payload: TAuth) => {
     throw new AppError(httpStatus.FORBIDDEN, `this User is already deleted`);
   }
 
-  const isStatusBlocked = user.status === "blocked";
-  if (isStatusBlocked) {
-    throw new AppError(httpStatus.FORBIDDEN, `User is already blocked`);
-  }
+  // const isStatusBlocked = user.status === "inactive";
+  // if (isStatusBlocked) {
+  //   throw new AppError(httpStatus.FORBIDDEN, `User is not active`);
+  // }
 
   console.log("passwords", payload.password, user);
 
@@ -39,7 +39,7 @@ const LoginUser = async (payload: TAuth) => {
   }
 
   const jwtPayload = {
-    userId: user.id,
+    userId: user.username,
     role: user.role,
   };
 
@@ -60,8 +60,7 @@ const LoginUser = async (payload: TAuth) => {
   console.log({ accessToken });
   return {
     accessToken,
-    refreshToken,
-    needsPasswordChange: user.needsPasswordChange,
+    refreshToken,\
   };
 };
 
@@ -72,7 +71,7 @@ const changePassword = async (
   payload: { oldPassword: string; newPassword: string }
 ) => {
   console.log({ userData });
-  const user = await User.isUserExistsByCustomId(userData.userId);
+  const user = await User.isUserExists(userData.username);
 
   console.log({ user });
   if (!user) {
@@ -87,10 +86,10 @@ const changePassword = async (
     throw new AppError(httpStatus.FORBIDDEN, `this User is already deleted`);
   }
 
-  const isStatusBlocked = user.status === "blocked";
-  if (isStatusBlocked) {
-    throw new AppError(httpStatus.FORBIDDEN, `User is already blocked`);
-  }
+  // const isStatusBlocked = user.status === "blocked";
+  // if (isStatusBlocked) {
+  //   throw new AppError(httpStatus.FORBIDDEN, `User is already blocked`);
+  // }
 
   const isPasswordMatched = await User.isPasswordMatched(
     payload.oldPassword,
