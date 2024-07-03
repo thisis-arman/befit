@@ -37,4 +37,4 @@ const PackageSchema = new Schema<TPackage>(
 );
 
 // Create and export Package model
-const PackageModel = model<TPackage>("Package", PackageSchema);
+export const Package = model<TPackage>("Package", PackageSchema);
