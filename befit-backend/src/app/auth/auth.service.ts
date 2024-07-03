@@ -9,7 +9,7 @@ import { AppError } from "../errors/AppError";
 import config from "../config";
 
 const LoginUser = async (payload: TAuth) => {
-  const user = await User.isUserExistsByCustomId(payload.id);
+  const user = await User.isUser(payload.username);
 
   if (!user) {
     throw new AppError(

@@ -1,7 +1,4 @@
-
-
-
 export type TAuth = {
-    id: string;
-    password: string;
-}
+  username: string;
+  password: string;
+};
