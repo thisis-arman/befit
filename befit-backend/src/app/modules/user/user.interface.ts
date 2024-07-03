@@ -5,7 +5,7 @@ type TUser = {
   username: string;
   email: string;
   password: string;
-    role: "admin" | "trainer" | "member";
+  role: "admin" | "trainer" | "member"|"user";
   isDeleted?: boolean;
 };
 
