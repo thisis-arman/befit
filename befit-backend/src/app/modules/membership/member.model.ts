@@ -6,7 +6,6 @@ const MembershipSchema = new Schema<TMembership>(
   {
     membershipId: {
       type: String,
-      required: true,
       unique: true,
     },
     user: {
@@ -38,4 +37,4 @@ const MembershipSchema = new Schema<TMembership>(
 );
 
 // Create and export Membership model
-const MembershipModel = model<TMembership>("Membership", MembershipSchema);
+export const Membership = model<TMembership>("Membership", MembershipSchema);

@@ -12,5 +12,4 @@ const findLastIdByRole = async (role: string) => {
 
 const generateMembershipId = async () => {
     const isUserFound = await findLastIdByRole("member");
-
 } */
