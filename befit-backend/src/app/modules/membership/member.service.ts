@@ -48,6 +48,15 @@ const createNewMembershipIntoDB = async (payload: TMembership) => {
     
 }
 
+
+const getAllMembershipsFromDB = async (query: Record<string, unknown>) => {
+    const result = await Membership.find(query)
+      .populate("user")
+      .populate("packageId");
+    return result;
+}
+
 export const membershipServices = {
     createNewMembershipIntoDB,
+    getAllMembershipsFromDB
 }

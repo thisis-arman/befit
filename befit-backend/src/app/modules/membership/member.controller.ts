@@ -12,8 +12,18 @@ const createNewMembership = catchAsync(async (req, res, next) => {
     data: result,
   });
 });
+const getAllMemberships = catchAsync(async (req, res, next) => {
+  const result = await membershipServices.getAllMembershipsFromDB(req.query);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Memberships Retrieved successfully",
+    data: result,
+  });
+});
 
 
 export const membershipControllers = {
-    createNewMembership
+  createNewMembership,
+  getAllMemberships
 }

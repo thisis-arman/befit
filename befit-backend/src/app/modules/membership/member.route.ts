@@ -11,4 +11,6 @@ router.post(
   membershipControllers.createNewMembership
 );
 
+router.get('/',membershipControllers.getAllMemberships)
+
 export const membershipRoutes = router;
