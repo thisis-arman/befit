@@ -44,10 +44,10 @@ const ExerciseSchema = new Schema({
   howTo: { type: String, required: true },
   prerequisites: { type: String, required: true },
 });
-export const Exercise = model<IExercise>("excercise", ExerciseSchema);
+export const Exercise = model<IExercise>("exercises", ExerciseSchema);
 
 
-app.get("/exercises", async (req, res) => {
+app.get("/api/v1/exercises", async (req, res) => {
   try {
     const exercises = await Exercise.find(); 
     res.status(200).json({
