@@ -49,14 +49,13 @@ export const Exercise = model<IExercise>("excercise", ExerciseSchema);
 
 app.get("/exercises", async (req, res) => {
   try {
-    const exercises = await Exercise.find(); // Use Exercise.find() directly
-    console.log(exercises); // Logging the exercises array
+    const exercises = await Exercise.find(); 
     res.status(200).json({
       success: true,
       message: "Exercises",
       data: exercises,
     });
-  } catch (error) {
+  } catch (error:any) {
     console.error("Error fetching exercises:", error);
     res.status(500).json({
       success: false,

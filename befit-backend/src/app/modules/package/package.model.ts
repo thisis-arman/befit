@@ -19,7 +19,7 @@ const PackageSchema = new Schema<TPackage>(
     },
     duration: {
       type: String,
-      enum: ["monthly", "quarterly", "yearly"],
+      enum: ["মাসিক", "ত্রৈমাসিক", "বাৎসরিক"],
       required: true,
     },
     features: {

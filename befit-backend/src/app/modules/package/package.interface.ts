@@ -2,7 +2,7 @@ type TPackage = {
   pkgId: string;
   name: string;
   price: number;
-  duration: "monthly" | "quarterly" | "yearly";
+  duration: "মাসিক" | "ত্রৈমাসিক" | "বাৎসরিক";
   features: string[];
   isDeleted?: boolean;
 };

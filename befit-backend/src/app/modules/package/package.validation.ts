@@ -5,8 +5,8 @@ const packageValidationSchema = z.object({
   pkgId: z.string().min(1, { message: "Package ID is required" }),
   name: z.string().min(1, { message: "Name is required" }).trim(),
   price: z.number().min(0, { message: "Price must be a positive number" }),
-  duration: z.enum(["monthly", "quarterly", "yearly"], {
-    message: "Duration must be one of 'monthly', 'quarterly', 'yearly'",
+  duration: z.enum(["মাসিক", "ত্রৈমাসিক", "বাৎসরিক"], {
+    message: "Duration must be one of 'মাসিক', 'ত্রৈমাসিক', 'বাৎসরিক'",
   }),
   features: z
     .array(z.string().min(1, { message: "Feature cannot be empty" }))
