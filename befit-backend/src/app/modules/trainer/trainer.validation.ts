@@ -2,39 +2,17 @@ import { z } from "zod";
 
 // Zod Schema for Trainer
 const trainerValidationSchema = z.object({
-  trainerId: z.string({
-    required_error: "Trainer ID is required",
-  }),
-  firstName: z
+  trainerId: z
     .string({
-      required_error: "First name is required",
+      required_error: "Trainer ID is required",
     })
-    .trim(),
-  lastName: z
-    .string({
-      required_error: "Last name is required",
-    })
-    .trim(),
-  gender: z.enum(["Male", "Female", "Other"], {
-    required_error: "Gender is required",
+    .optional(),
+  user: z.string({
+    required_error: "User ID is required",
   }),
   dateOfBirth: z.string().optional(),
-  email: z
-    .string({
-      required_error: "Email is required",
-    })
+  email: z.string({required_error: "Email is required"})
     .email("Email must be a valid email address")
-    .trim()
-    .toLowerCase(),
-  phone: z
-    .string({
-      required_error: "Phone number is required",
-    })
-    .trim(),
-  address: z
-    .string({
-      required_error: "Address is required",
-    })
     .trim(),
   profilePicture: z.string().optional(),
   bio: z.string().optional(),

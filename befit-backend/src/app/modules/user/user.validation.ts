@@ -15,6 +15,11 @@ const userValidationSchema = z.object({
     .email("Invalid email format")
     .trim()
     .toLowerCase(),
+  gender: z.enum(["Male", "Female", "Other"]),
+  address: z
+    .string({ required_error: "Address is required" })
+    .min(1, "address cannot be empty")
+    .trim(),
   username: z
     .string({ required_error: "Username is required" })
     .min(1, "Username cannot be empty")
@@ -27,7 +32,7 @@ const userValidationSchema = z.object({
     .string({ required_error: "Password is required" })
     .min(1, "Password cannot be empty"),
   role: z
-    .enum(["admin", "trainer", "member","user"], {
+    .enum(["admin", "trainer", "member", "user"], {
       required_error: "Role is required",
     })
     .optional(),

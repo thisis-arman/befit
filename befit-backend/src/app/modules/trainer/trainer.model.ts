@@ -8,40 +8,13 @@ const TrainerSchema = new Schema<TTrainer>(
       type: String,
       unique: true,
     },
-    firstName: {
-      type: String,
+    user: {
+      type: Schema.Types.ObjectId,
       required: true,
-      trim: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    gender: {
-      type: String,
-      enum: ["Male", "Female", "Other"],
-      required: true,
+
     },
     dateOfBirth: {
       type: String, // ISO 8601 date string
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      lowercase: true,
-    },
-    phone: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    address: {
-      type: String,
-      required: true,
-      trim: true,
     },
     profilePicture: {
       type: String,

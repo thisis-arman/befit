@@ -1,14 +1,16 @@
 import { Model } from "mongoose";
 import { USER_ROLE } from "./user.constant";
 
-interface TUser  {
+interface TUser {
   firstName: string;
   lastName: string;
   contactNo: string;
+  gender: "Male" | "Female" | "Other";
+  address: string;                                                   
   username: string;
   email: string;
   password: string;
-  role: "admin" | "trainer" | "member"|"user";
+  role: "admin" | "trainer" | "member" | "user";
   isDeleted?: boolean;
 };
 
