@@ -1,26 +1,25 @@
-// type Experience = {
-//   role: string;
-//   gym: string;
-//   startDate: string; // ISO 8601 date string
-//   endDate?: string; // Optional, ISO 8601 date string
-//   description?: string;
-// };
 
-import { Types } from "mongoose";
 
-export type TTrainer = {
+
+// Combined TTrainer interface
+interface TTrainer {
   trainerId?: string;
-  user: Types.ObjectId;
-  dateOfBirth?: string; 
-  profilePicture?: string; 
-  bio?: string;
-  status: "active" | "inactive";
+  firstName: string;
+  lastName: string;
+  contactNo?: string;
+  gender: "Male" | "Female" | "Other";
+  address?: string;
+  username: string;
+  email?: string;
+  password: string;
+  role: "admin" | "trainer" | "member" | "user";
   isDeleted?: boolean;
-  availability: string;
+  dateOfBirth?: string;
+  profilePicture?: string;
+  bio?: string;
+  status: "active" | "inactive" | "in-progress";
+  availability?: string;
   needToUpdateInfo?: boolean;
-  // A description of the trainer's availability
-  //   qualifications?: string[];
-  //   experience?: Experience[];
-  //   specializations?: string[];
-  //   certifications?: string[];
-};
+}
+
+export default TTrainer;
