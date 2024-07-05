@@ -13,6 +13,18 @@ const createTrainer = catchAsync(async (req, res, next) => {
   });
 });
 
+
+const getAllTrainers = catchAsync(async (req, res, next) => {
+  const result = await TrainerServices.getAllTrainersFromDB(req.query);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Trainers are retrieved successfully",
+    data: result,
+  });
+});
+
 export const trainerControllers = {
-  createTrainer,
+    createTrainer,
+    getAllTrainers
 };

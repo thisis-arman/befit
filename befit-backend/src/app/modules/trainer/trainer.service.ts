@@ -1,7 +1,7 @@
 import httpStatus from "http-status";
-import { TTrainer } from "./trainer.interface"
 import { Trainer } from "./trainer.model"
 import { AppError } from "../../errors/AppError";
+import TTrainer from "./trainer.interface";
 
 
 const createTrainerIntoDB = async (payload: TTrainer) => {
@@ -25,13 +25,11 @@ const createTrainerIntoDB = async (payload: TTrainer) => {
       }
 
       let incrementId = (Number(currentId) + 1).toString().padStart(4, "0"); 
-
       incrementId = `T-${incrementId}`; 
-
       console.log("Generated Faculty ID: ", incrementId);
       return incrementId;
-    };
-
+  };
+  
     const trainerId = await generateMembershipId();
 
     const isTrainerAlreadyExists = await Trainer.findOne({ trainerId });
@@ -40,18 +38,25 @@ const createTrainerIntoDB = async (payload: TTrainer) => {
         httpStatus.BAD_REQUEST,
         "You are already our trainer"
       );
-    }
-
+  }
+  
     const newPayload = {
       trainerId,
       ...payload,
-    };
-
-
+  };
+  
     const result = await Trainer.create(newPayload)
     return result;
 }
 
 
+const getAllTrainersFromDB = async (query:Record<string,unknown>) => {
+  const result = await Trainer.find(query);
+  return result;
+}
 
-export const TrainerServices ={ createTrainerIntoDB}
+
+export const TrainerServices = {
+  createTrainerIntoDB,
+  getAllTrainersFromDB
+}

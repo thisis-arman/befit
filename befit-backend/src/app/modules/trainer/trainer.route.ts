@@ -11,4 +11,9 @@ router.post(
   trainerControllers.createTrainer
 );
 
+router.get(
+  "/",
+  trainerControllers.getAllTrainers
+);
+
 export const trainerRoutes = router;
